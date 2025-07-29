@@ -1,0 +1,101 @@
+1. Networking basics
+
+Networking means the communication between 2 or more devices.
+Protocols are the rules used for networking.
+
+client - req karne vaala
+server - response dene vaala
+
+- Protocols
+
+    HTTP : for web browsing
+    HHTPS : secure web communication
+    FTP : file transfer
+    SSH : secure shell, remote access
+    DNS : domain - IP mapping
+    TCP/IP : internet ke backbone Protocols
+
+
+- IP Address
+
+    every device which is connected to internet or local network has an ip address.
+    example: 
+        192.168.0.1 - local network
+        142.250.193.78 - google's ip
+    
+    types:
+        IPv4 - 4 parts, 0-255
+        IPv6 - more longer and complex
+
+
+- MAC address
+
+    physical address of the device's network interface
+    unique for every device
+    mostly used for lan lvl comm
+
+
+- DNS
+
+    converts domain to ip
+        nslookup google.com - will return ip of the site
+
+
+
+2.TCP/IP & ports
+
+transmission control protocol / internet protocol
+it is a comm model which tells how data travels on the internet
+
+IP decides where to send the package
+TCP ensures how and how much
+
+- Layers
+
+    apps : chrome, whatsapp, etc.
+    transport : reliable delivery (TCP/UDP)
+    internet : ip address and routing
+    network access : physical sending (like ethernet/wi-fi)
+
+
+- TCP vs UDP
+
+    | Feature     | TCP (Used in Scanning)   | UDP                  |
+    | ----------- | ------------------------ | -------------------- |
+    | Reliable?   | ✅ Yes (acknowledgements)| ❌ No (best effort)  |
+    | Speed       | Slower                   | Faster               |
+    | Use Case    | Web, Email, SSH, etc.    | Streaming, DNS, VoIP |
+    | Connection? | Yes (handshake)          | No connection needed |
+
+    TCP:
+    3 way handshake
+    syn - synchronize
+    ack - acknowledgement
+        1. SYN: client --> server
+        2. SYN+ACK: server --> client
+        3. ACK: client --> server
+        connection done 
+        if all steps complete then the port is open and if any step fails, the port is closed or filtered.
+
+
+- Ports 
+    logical door of a system jaha services baithi hoti hai 
+    when we are scanning an ip address, we are actually seeing which ports are open and what services they provide
+
+    port no ranges:
+        | Port Type        | Range       | Example                |
+        | ---------------- | ----------- | ---------------------- |
+        | Well-known Ports | 0–1023      | 80 (HTTP), 443 (HTTPS) |
+        | Registered Ports | 1024–49151  | 3306 (MySQL), etc.     |
+        | Dynamic/Private  | 49152–65535 | Temporary use          |
+    
+    port states:
+        whenever we scan a port it is in a states
+
+        open - a service is actively listening
+        closed - port is not active 
+        filtered - scanner not getting any response, maybe because of firewall
+        unfiltered - scanner got a response but unsure
+
+
+
