@@ -99,3 +99,83 @@ TCP ensures how and how much
 
 
 
+3. Connect Scan vs SYN scan
+    both of these are TCP port scanning Techniques - means how you are checking port status
+
+    Connect Scan:
+        this scan completes TCP handshake
+        as soon as connection succeeds, it closes it
+
+        steps:
+            1. SYN: client --> server
+            2. SYN+ACK: server --> client
+            3. ACK: client --> server
+            - connection done
+            4. client closes the connection 
+
+    SYN Scan:
+        this scan stops TCP handshake halfway through
+        that's why it is called half-open scan or stealth scan
+
+        steps:
+            1. SYN: client --> server
+            2. SYN+ACK: server --> client
+            3. no ACK, RST or nothing
+            RST - reset (When a computer receives a packet with the RST flag set to 1, it immediately closes the connection and discards any further data related to that connection. )    
+
+
+    summary:
+
+        | Feature         | Connect Scan      | SYN Scan                    |
+        | --------------- | ----------------- | --------------------------- |
+        | TCP Handshake   | Full              | Half (No final ACK)         |
+        | Detectable?     | ✅ Yes            | ❌ Less likely              |
+        | Easy in Python? | ✅ Yes (`socket`) | ❌ No (needs `scapy`, root) |
+        | Stealth Level   | Low               | High                        |
+        | Permissions     | Normal user       | Often needs root/sudo       |
+
+
+
+4. Python Socket programming (connect scan)
+    socket - it is a programming interface which allows the network devices to communicate
+
+    socket module:
+        connect to IP + port
+        send/recieve data
+        check port status
+        
+    basic port scanner logic:
+        1. take ip address
+        2. define port range
+        3. try making connection for every port
+        4. if connected - port is open
+        5. if error - port closed or unreachable
+
+
+5. Threading & Concurrency
+    if we scan each port one by one it will take a lot of time, so we use threading to make it faster
+    by using threading we can make the program scan multiple ports parallely
+
+    cons:
+        - too many threads can slow down or crash the system 
+        - order of results can be random
+        
+
+6. Banner grabbing
+    banner grabbing is used for taking out intro info from the target server
+    
+    info:
+        - server's software name
+        - verison no.
+        - os (sometimes)
+        - warning messages or misconf hints (sometimes)
+
+    types:
+        1. Active banner grabbing:
+            manually ask for it after connecting
+        2. Passive banner grabbing:
+            by data sniffing with someone else's connection, we don't req manually
+        
+    use:
+        tells the attacker from software version that which exploit can work
+
