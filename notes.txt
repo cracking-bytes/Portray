@@ -1,3 +1,8 @@
+These are notes I wrote while learning the concept of everything.
+Not included for official docs.
+
+
+
 1. Networking basics
 
 Networking means the communication between 2 or more devices.
